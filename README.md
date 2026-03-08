@@ -25,6 +25,7 @@ The **operator pattern** (agent-as-tool) solves this by routing CLI execution th
 This gives you:
 
 - **Context isolation** — The primary benefit. Each operator runs in its own context window, dedicated to a specific tool and task. CLI output, retries, and troubleshooting stay contained in the subagent. The main agent's context stays focused on your actual work, letting it run longer before requiring compaction.
+- **Cost efficiency** — Operators can run on cheaper, faster models. Most CLI operations don't need your most capable model — a Sonnet-class agent handles `gh pr create` or `bun install` just fine, while Opus stays focused on the work that actually needs it.
 - **Safety** — Operators have scoped permissions and built-in safeguards. The main agent can't accidentally force-push or deploy to production; each operator enforces its own guardrails.
 - **Consistency** — Every `gh pr create` goes through the same operator with the same conventions. No variation depending on how the main agent decides to construct a command.
 - **Composability** — Operators are modular plugins. Install only what you need, create custom operators for your own CLIs, and override mappings per-project.

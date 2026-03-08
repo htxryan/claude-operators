@@ -73,6 +73,14 @@ This creates the agent file and hook guard entries in your project's `.claude/` 
 
 Each plugin reads both its own `config/operator-map.json` and a project-local `.claude/operator-map.json`. This lets projects add custom CLI-to-operator mappings without modifying the plugins.
 
+For example, after scaffolding a kubectl operator with `/create-operator kubectl`, your `.claude/operator-map.json` would look like:
+
+```json
+{
+  "kubectl": "kubectl-operator"
+}
+```
+
 ## How Subagent Bypass Works
 
 When the main agent tries to run `git push`, the `PreToolUse` hook blocks it and says "use the git-operator subagent instead." When `git-operator` then runs `git push` itself, the same hook fires — but now the hook input includes `agent_type: "git-operator"`, so the hook allows it through.

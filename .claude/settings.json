@@ -1,10 +1,10 @@
 {
   "enabledPlugins": {
-    "operator-system@claude-operators": true,
-    "operator-github@claude-operators": true,
-    "operator-bun@claude-operators": true,
-    "operator-cloudflare-wrangler@claude-operators": true,
-    "operator-drizzle@claude-operators": true,
-    "operator-neon@claude-operators": true
+    "operator-system@agent-operators": true,
+    "operator-github@agent-operators": true,
+    "operator-bun@agent-operators": true,
+    "operator-cloudflare-wrangler@agent-operators": true,
+    "operator-drizzle@agent-operators": true,
+    "operator-neon@agent-operators": true
   }
 }

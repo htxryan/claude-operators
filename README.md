@@ -67,17 +67,17 @@ Individual operator plugins (github, bun, cloudflare, drizzle, neon) each provid
 **2. Install the base plugin** — This is required and provides the enforcement hooks, git-operator, and scaffolding skill:
 
 ```
-/plugin install operator-system@claude-operators
+/plugin install operator-system@agent-operators
 ```
 
 **3. Install operator plugins** — Add whichever operators you need:
 
 ```
-/plugin install operator-github@claude-operators
-/plugin install operator-bun@claude-operators
-/plugin install operator-cloudflare-wrangler@claude-operators
-/plugin install operator-drizzle@claude-operators
-/plugin install operator-neon@claude-operators
+/plugin install operator-github@agent-operators
+/plugin install operator-bun@agent-operators
+/plugin install operator-cloudflare-wrangler@agent-operators
+/plugin install operator-drizzle@agent-operators
+/plugin install operator-neon@agent-operators
 ```
 
 You can also browse available plugins interactively with `/plugin` and selecting the **Discover** tab.

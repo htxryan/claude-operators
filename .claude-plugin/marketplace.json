@@ -1,5 +1,5 @@
 {
-  "name": "claude-operators",
+  "name": "agent-operators",
   "description": "A plugin marketplace for Claude Code operator subagents. Each operator wraps a CLI tool behind a dedicated subagent with enforcement hooks that block direct CLI usage.",
   "author": "htxryan",
   "owner": {

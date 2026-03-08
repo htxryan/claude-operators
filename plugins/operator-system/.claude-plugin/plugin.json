@@ -1,0 +1,8 @@
+{
+  "name": "operator-system",
+  "version": "1.0.0",
+  "description": "Base infrastructure for Claude Code operator subagents. Provides CLI enforcement hooks, subagent lifecycle tracking, the git-operator agent, and a scaffolding skill for creating new operators.",
+  "author": "htxryan",
+  "keywords": ["operators", "subagents", "git", "enforcement", "hooks"],
+  "dependencies": []
+}

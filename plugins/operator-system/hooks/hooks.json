@@ -10,36 +10,6 @@
           }
         ]
       }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PLUGIN_ROOT/scripts/track-subagent.sh reset"
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PLUGIN_ROOT/scripts/track-subagent.sh start"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PLUGIN_ROOT/scripts/track-subagent.sh stop"
-          }
-        ]
-      }
     ]
   }
 }

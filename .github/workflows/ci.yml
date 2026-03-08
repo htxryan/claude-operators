@@ -28,8 +28,5 @@ jobs:
       - name: Run enforce tests
         run: tests/test-enforce.sh
 
-      - name: Run tracking tests
-        run: tests/test-tracking.sh
-
       - name: Run shellcheck tests
         run: tests/test-shellcheck.sh

@@ -44,9 +44,6 @@ done
 # ---------------------------------------------------------------------------
 # 2. operator-system extras
 # ---------------------------------------------------------------------------
-assert_file_exists "$PLUGINS_DIR/operator-system/scripts/track-subagent.sh" \
-  "operator-system: scripts/track-subagent.sh exists"
-
 assert_file_exists "$PLUGINS_DIR/operator-system/skills/create-operator/SKILL.md" \
   "operator-system: skills/create-operator/SKILL.md exists"
 
@@ -136,20 +133,7 @@ for plugin in "${ALL_PLUGINS[@]}"; do
 done
 
 # ---------------------------------------------------------------------------
-# 6. operator-system hooks.json extras
-# ---------------------------------------------------------------------------
-os_hooks="$PLUGINS_DIR/operator-system/hooks/hooks.json"
-for hook_type in SessionStart SubagentStart SubagentStop; do
-  arr_len=$(jq ".hooks.$hook_type | length" "$os_hooks" 2>/dev/null || echo "0")
-  if [ "$arr_len" -gt 0 ]; then
-    pass "operator-system: hooks.json has $hook_type array"
-  else
-    fail "operator-system: hooks.json has $hook_type array"
-  fi
-done
-
-# ---------------------------------------------------------------------------
-# 7. Shell scripts executable
+# 6. Shell scripts executable
 # ---------------------------------------------------------------------------
 while IFS= read -r sh_file; do
   rel="${sh_file#"$REPO_ROOT"/}"
@@ -157,7 +141,7 @@ while IFS= read -r sh_file; do
 done < <(find "$REPO_ROOT" -name '*.sh' -type f)
 
 # ---------------------------------------------------------------------------
-# 8. Shell script syntax
+# 7. Shell script syntax
 # ---------------------------------------------------------------------------
 while IFS= read -r sh_file; do
   rel="${sh_file#"$REPO_ROOT"/}"
@@ -169,7 +153,7 @@ while IFS= read -r sh_file; do
 done < <(find "$REPO_ROOT" -name '*.sh' -type f)
 
 # ---------------------------------------------------------------------------
-# 9. Agent frontmatter — name, description, model
+# 8. Agent frontmatter — name, description, model
 # ---------------------------------------------------------------------------
 while IFS= read -r md_file; do
   rel="${md_file#"$REPO_ROOT"/}"

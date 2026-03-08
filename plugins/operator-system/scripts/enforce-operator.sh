@@ -6,8 +6,8 @@
 #   1. Plugin's own config/operator-map.json
 #   2. Project-local .claude/operator-map.json (if present)
 #
-# Relies on track-subagent.sh (SubagentStart/SubagentStop) to maintain
-# marker files that signal when a subagent is active.
+# Uses the agent_type field from PreToolUse hook input (available since
+# Claude Code 2.1.64) to distinguish main-agent calls from subagent calls.
 
 set -euo pipefail
 
@@ -17,10 +17,10 @@ PROJECT_MAP="${CLAUDE_PROJECT_DIR:-.}/.claude/operator-map.json"
 
 INPUT=$(cat)
 
-# If any subagent is currently active in this session, allow the command.
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // empty')
-MARKER_DIR="${TMPDIR:-/tmp}/claude-operator-system/active-subagents/${SESSION_ID}"
-if [ -n "$SESSION_ID" ] && [ -d "$MARKER_DIR" ] && [ -n "$(ls -A "$MARKER_DIR" 2>/dev/null)" ]; then
+# If this call is coming from any subagent, allow it through.
+# Subagents are purpose-built and should be free to run their CLI commands.
+AGENT_TYPE=$(echo "$INPUT" | jq -r '.agent_type // empty')
+if [ -n "$AGENT_TYPE" ]; then
   exit 0
 fi
 

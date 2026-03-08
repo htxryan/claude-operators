@@ -48,16 +48,29 @@ Individual operator plugins (github, bun, cloudflare, drizzle, neon) each provid
 
 ## Installation
 
-Install the `operator-system` base plugin first, then add any operator plugins you need:
+**1. Add the marketplace** — Run this in Claude Code to register the plugin registry:
 
 ```
-operator-system          (required - base infrastructure)
-github-operator          (optional)
-bun-operator             (optional)
-cloudflare-wrangler-operator  (optional)
-drizzle-operator         (optional)
-neon-operator            (optional)
+/plugin marketplace add htxryan/claude-operators
 ```
+
+**2. Install the base plugin** — This is required and provides the enforcement hooks, git-operator, and scaffolding skill:
+
+```
+/plugin install operator-system@claude-operators
+```
+
+**3. Install operator plugins** — Add whichever operators you need:
+
+```
+/plugin install github-operator@claude-operators
+/plugin install bun-operator@claude-operators
+/plugin install cloudflare-wrangler-operator@claude-operators
+/plugin install drizzle-operator@claude-operators
+/plugin install neon-operator@claude-operators
+```
+
+You can also browse available plugins interactively with `/plugin` and selecting the **Discover** tab.
 
 ## Creating Custom Operators
 

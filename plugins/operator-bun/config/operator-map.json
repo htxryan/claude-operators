@@ -1,4 +1,4 @@
 {
-  "bun": "bun-operator",
-  "bunx": "bun-operator"
+  "bun": "operator-bun",
+  "bunx": "operator-bun"
 }

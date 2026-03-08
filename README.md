@@ -37,11 +37,11 @@ This isn't specific to the operators in this repo — it's a general pattern you
 | Plugin | CLI Guards | Operator | Description |
 |--------|-----------|----------|-------------|
 | `operator-system` | `git` | git-operator | Base infrastructure + git operator + create-operator skill |
-| `operator-github` | `gh` | github-operator | GitHub CLI operations (PRs, issues, releases) |
-| `operator-bun` | `bun`, `bunx` | bun-operator | Bun package manager and runtime operations |
-| `operator-cloudflare-wrangler` | `wrangler` | cloudflare-wrangler-operator | Cloudflare Workers, KV, R2, D1, and deployments |
-| `operator-drizzle` | `drizzle-kit` | drizzle-operator | Drizzle ORM migrations, schema push, and studio |
-| `operator-neon` | `neonctl` | neon-operator | Neon Postgres branches, connections, and projects |
+| `operator-github` | `gh` | operator-github | GitHub CLI operations (PRs, issues, releases) |
+| `operator-bun` | `bun`, `bunx` | operator-bun | Bun package manager and runtime operations |
+| `operator-cloudflare-wrangler` | `wrangler` | operator-cloudflare-wrangler | Cloudflare Workers, KV, R2, D1, and deployments |
+| `operator-drizzle` | `drizzle-kit` | operator-drizzle | Drizzle ORM migrations, schema push, and studio |
+| `operator-neon` | `neonctl` | operator-neon | Neon Postgres branches, connections, and projects |
 
 ## How It Works
 

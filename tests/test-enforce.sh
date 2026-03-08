@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Tests for enforce-operator.sh behavioral enforcement logic.
 # Verifies that each plugin blocks its guarded CLIs, allows non-guarded
-# commands, respects active subagent markers, and handles edge cases.
+# commands, respects agent_type for subagent bypass, and handles edge cases.
 
 set -euo pipefail
 source "$(dirname "$0")/helpers.sh"
@@ -42,23 +42,15 @@ assert_exit_stdin 0 \
   "$OPERATOR_SYSTEM"
 
 # ---------------------------------------------------------------------------
-# 3. Allows when subagent is active
+# 3. Allows when agent_type is present (subagent context)
 # ---------------------------------------------------------------------------
-MARKER_DIR="$TEST_TMPDIR/claude-operator-system/active-subagents/test"
-mkdir -p "$MARKER_DIR"
-touch "$MARKER_DIR/some-agent"
-
 assert_exit_stdin 0 \
-  '{"session_id":"test","tool_input":{"command":"git status"}}' \
+  '{"session_id":"test","agent_type":"git-operator","agent_id":"agent-123","tool_input":{"command":"git status"}}' \
   "$OPERATOR_SYSTEM"
 
 # ---------------------------------------------------------------------------
-# 4. Blocks after subagent stops (marker removed)
+# 4. Blocks when agent_type is absent (main agent context)
 # ---------------------------------------------------------------------------
-rm -f "$MARKER_DIR/some-agent"
-# Remove dir if empty (mirrors real cleanup behavior)
-rmdir "$MARKER_DIR" 2>/dev/null || true
-
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"git status"}}' \
   "$OPERATOR_SYSTEM"

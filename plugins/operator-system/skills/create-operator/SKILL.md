@@ -1,5 +1,6 @@
 ---
 description: Create a new operator subagent for a CLI tool and add its enforce-operator hook guard
+disable-model-invocation: true
 ---
 
 Create a new operator subagent for the specified CLI tool and register its hook guard.

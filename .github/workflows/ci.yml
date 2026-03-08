@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Make test scripts executable
+        run: chmod +x tests/*.sh
+
+      - name: Run structure tests
+        run: tests/test-structure.sh
+
+      - name: Run consistency tests
+        run: tests/test-consistency.sh
+
+      - name: Run enforce tests
+        run: tests/test-enforce.sh
+
+      - name: Run tracking tests
+        run: tests/test-tracking.sh
+
+      - name: Run shellcheck tests
+        run: tests/test-shellcheck.sh

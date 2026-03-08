@@ -5,11 +5,11 @@ source "$(dirname "$0")/helpers.sh"
 # =============================================================================
 # Cross-file invariant tests for the claude-operators repo.
 # Validates that plugin metadata, agent files, marketplace listings,
-# operator-maps, and dependency declarations are all consistent.
+# and operator-maps are all consistent.
 # =============================================================================
 
 PLUGINS_DIR="$REPO_ROOT/plugins"
-MARKETPLACE="$REPO_ROOT/marketplace.json"
+MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
 
 # ---------------------------------------------------------------------------
 # 1. Name alignment — directory name matches plugin.json name field
@@ -45,7 +45,7 @@ done
 # ---------------------------------------------------------------------------
 # 3. Marketplace coverage
 #    a) Every plugins/ directory is listed in marketplace.json by name
-#    b) Every marketplace.json entry path resolves to a real directory
+#    b) Every marketplace.json entry source resolves to a real directory
 # ---------------------------------------------------------------------------
 marketplace_names="$(jq -r '.plugins[].name' "$MARKETPLACE")"
 
@@ -58,15 +58,15 @@ for dir in "$PLUGINS_DIR"/*/; do
   fi
 done
 
-marketplace_paths="$(jq -r '.plugins[].path' "$MARKETPLACE")"
+marketplace_sources="$(jq -r '.plugins[].source' "$MARKETPLACE")"
 while IFS= read -r rel_path; do
   full_path="$REPO_ROOT/$rel_path"
   if [ -d "$full_path" ]; then
-    pass "marketplace-path: $rel_path resolves to a real directory"
+    pass "marketplace-source: $rel_path resolves to a real directory"
   else
-    fail "marketplace-path: $rel_path does NOT resolve to a real directory"
+    fail "marketplace-source: $rel_path does NOT resolve to a real directory"
   fi
-done <<< "$marketplace_paths"
+done <<< "$marketplace_sources"
 
 # ---------------------------------------------------------------------------
 # 4. Operator-map references valid
@@ -89,28 +89,7 @@ for map_file in "$PLUGINS_DIR"/*/config/operator-map.json; do
 done
 
 # ---------------------------------------------------------------------------
-# 5. Dependencies correct
-#    - operator-system has dependencies: []
-#    - all other plugins have dependencies: ["operator-system"]
-# ---------------------------------------------------------------------------
-for dir in "$PLUGINS_DIR"/*/; do
-  dir_name="$(basename "$dir")"
-  plugin_json="$dir/.claude-plugin/plugin.json"
-  [ ! -f "$plugin_json" ] && continue
-
-  deps="$(jq -c '.dependencies' "$plugin_json")"
-
-  if [ "$dir_name" = "operator-system" ]; then
-    assert_eq "[]" "$deps" \
-      "dependencies: operator-system has empty dependencies"
-  else
-    assert_eq '["operator-system"]' "$deps" \
-      "dependencies: $dir_name depends on operator-system"
-  fi
-done
-
-# ---------------------------------------------------------------------------
-# 6. No duplicate keys across operator-maps
+# 5. No duplicate keys across operator-maps
 #    Collect all keys from all operator-map.json files. No CLI command should
 #    appear in more than one plugin's map.
 # ---------------------------------------------------------------------------

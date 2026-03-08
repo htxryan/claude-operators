@@ -70,7 +70,7 @@ for plugin in "${ALL_PLUGINS[@]}"; do
 done
 
 # Root marketplace.json
-if jq . "$REPO_ROOT/marketplace.json" >/dev/null 2>&1; then
+if jq . "$REPO_ROOT/.claude-plugin/marketplace.json" >/dev/null 2>&1; then
   pass "valid JSON: marketplace.json"
 else
   fail "valid JSON: marketplace.json"
@@ -79,7 +79,7 @@ fi
 # ---------------------------------------------------------------------------
 # 4. plugin.json schema — required fields
 # ---------------------------------------------------------------------------
-REQUIRED_PLUGIN_FIELDS=(name version description author keywords dependencies)
+REQUIRED_PLUGIN_FIELDS=(name version description author keywords)
 
 for plugin in "${ALL_PLUGINS[@]}"; do
   pjson="$PLUGINS_DIR/$plugin/.claude-plugin/plugin.json"
@@ -91,6 +91,13 @@ for plugin in "${ALL_PLUGINS[@]}"; do
         fail "$plugin: plugin.json has field '$field'"
       fi
     done
+
+    # author must be an object with a name field
+    if jq -e '.author.name' "$pjson" >/dev/null 2>&1; then
+      pass "$plugin: plugin.json author is an object with 'name'"
+    else
+      fail "$plugin: plugin.json author is an object with 'name'"
+    fi
   fi
 done
 

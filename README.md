@@ -2,6 +2,16 @@
 
 A collection of Claude Code plugins that enforce CLI tool usage through operator subagents. Each plugin guards specific CLI commands and redirects to specialized subagents for safe, consistent execution.
 
+## Table of Contents
+
+- [Why the Operator Pattern?](#why-the-operator-pattern)
+- [Plugins](#plugins)
+- [How It Works](#how-it-works)
+- [Installation](#installation)
+- [Creating Custom Operators](#creating-custom-operators)
+- [Project-Local Overrides](#project-local-overrides)
+- [How Subagent Bypass Works](#how-subagent-bypass-works)
+
 ## Why the Operator Pattern?
 
 AI agents can run CLI tools directly, but every command and its output consumes the main agent's context window. A handful of `git` or `gh` invocations can burn through context fast, forcing earlier compaction and degrading the agent's ability to track your actual task. The main agent also has broad permissions — there's no guardrail preventing a careless `git push --force` or `wrangler deploy` to the wrong environment.

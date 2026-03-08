@@ -1,5 +1,5 @@
 {
-  "name": "neon-operator",
+  "name": "operator-neon",
   "version": "1.0.0",
   "description": "Neon Postgres operator subagent for Claude Code. Guards the neonctl CLI and provides expert Neon database infrastructure operations.",
   "author": {"name": "htxryan", "url": "https://github.com/htxryan"},

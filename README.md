@@ -26,11 +26,11 @@ This isn't specific to the operators in this repo — it's a general pattern you
 | Plugin | CLI Guards | Operator | Description |
 |--------|-----------|----------|-------------|
 | `operator-system` | `git` | git-operator | Base infrastructure + git operator + create-operator skill |
-| `github-operator` | `gh` | github-operator | GitHub CLI operations (PRs, issues, releases) |
-| `bun-operator` | `bun`, `bunx` | bun-operator | Bun package manager and runtime operations |
-| `cloudflare-wrangler-operator` | `wrangler` | cloudflare-wrangler-operator | Cloudflare Workers, KV, R2, D1, and deployments |
-| `drizzle-operator` | `drizzle-kit` | drizzle-operator | Drizzle ORM migrations, schema push, and studio |
-| `neon-operator` | `neonctl` | neon-operator | Neon Postgres branches, connections, and projects |
+| `operator-github` | `gh` | github-operator | GitHub CLI operations (PRs, issues, releases) |
+| `operator-bun` | `bun`, `bunx` | bun-operator | Bun package manager and runtime operations |
+| `operator-cloudflare-wrangler` | `wrangler` | cloudflare-wrangler-operator | Cloudflare Workers, KV, R2, D1, and deployments |
+| `operator-drizzle` | `drizzle-kit` | drizzle-operator | Drizzle ORM migrations, schema push, and studio |
+| `operator-neon` | `neonctl` | neon-operator | Neon Postgres branches, connections, and projects |
 
 ## How It Works
 
@@ -63,11 +63,11 @@ Individual operator plugins (github, bun, cloudflare, drizzle, neon) each provid
 **3. Install operator plugins** — Add whichever operators you need:
 
 ```
-/plugin install github-operator@claude-operators
-/plugin install bun-operator@claude-operators
-/plugin install cloudflare-wrangler-operator@claude-operators
-/plugin install drizzle-operator@claude-operators
-/plugin install neon-operator@claude-operators
+/plugin install operator-github@claude-operators
+/plugin install operator-bun@claude-operators
+/plugin install operator-cloudflare-wrangler@claude-operators
+/plugin install operator-drizzle@claude-operators
+/plugin install operator-neon@claude-operators
 ```
 
 You can also browse available plugins interactively with `/plugin` and selecting the **Discover** tab.

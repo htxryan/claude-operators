@@ -4,11 +4,11 @@ source "$(dirname "$0")/helpers.sh"
 
 # All plugin directories
 ALL_PLUGINS=(
-  bun-operator
-  cloudflare-wrangler-operator
-  drizzle-operator
-  github-operator
-  neon-operator
+  operator-bun
+  operator-cloudflare-wrangler
+  operator-drizzle
+  operator-github
+  operator-neon
   operator-system
 )
 

@@ -14,33 +14,33 @@
       "keywords": ["operators", "subagents", "git", "enforcement", "hooks"]
     },
     {
-      "name": "github-operator",
+      "name": "operator-github",
       "description": "GitHub operator subagent. Guards the gh CLI and provides expert GitHub operations (PRs, issues, Actions, releases).",
-      "source": "./plugins/github-operator",
+      "source": "./plugins/operator-github",
       "keywords": ["github", "gh", "pull-requests", "issues", "actions"]
     },
     {
-      "name": "bun-operator",
+      "name": "operator-bun",
       "description": "Bun runtime and package manager operator subagent. Guards bun and bunx CLI commands.",
-      "source": "./plugins/bun-operator",
+      "source": "./plugins/operator-bun",
       "keywords": ["bun", "bunx", "package-manager", "runtime", "testing"]
     },
     {
-      "name": "cloudflare-wrangler-operator",
+      "name": "operator-cloudflare-wrangler",
       "description": "Cloudflare Workers operator subagent. Guards the wrangler CLI for deployments, secrets, KV, R2, Queues, and more.",
-      "source": "./plugins/cloudflare-wrangler-operator",
+      "source": "./plugins/operator-cloudflare-wrangler",
       "keywords": ["cloudflare", "wrangler", "workers", "kv", "r2", "queues"]
     },
     {
-      "name": "drizzle-operator",
+      "name": "operator-drizzle",
       "description": "Drizzle ORM operator subagent. Guards the drizzle-kit CLI for migrations, schema push/pull, and Drizzle Studio.",
-      "source": "./plugins/drizzle-operator",
+      "source": "./plugins/operator-drizzle",
       "keywords": ["drizzle", "drizzle-kit", "orm", "migrations", "database"]
     },
     {
-      "name": "neon-operator",
+      "name": "operator-neon",
       "description": "Neon Postgres operator subagent. Guards the neonctl CLI for branch management, connection strings, and database operations.",
-      "source": "./plugins/neon-operator",
+      "source": "./plugins/operator-neon",
       "keywords": ["neon", "neonctl", "postgres", "database", "branching"]
     }
   ]

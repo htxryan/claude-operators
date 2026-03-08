@@ -1,5 +1,5 @@
 {
-  "name": "cloudflare-wrangler-operator",
+  "name": "operator-cloudflare-wrangler",
   "version": "1.0.0",
   "description": "Cloudflare Workers operator subagent for Claude Code. Guards the wrangler CLI and provides expert Cloudflare Workers operations.",
   "author": {"name": "htxryan", "url": "https://github.com/htxryan"},

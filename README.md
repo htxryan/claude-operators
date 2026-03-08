@@ -2,6 +2,25 @@
 
 A collection of Claude Code plugins that enforce CLI tool usage through operator subagents. Each plugin guards specific CLI commands and redirects to specialized subagents for safe, consistent execution.
 
+## Why the Operator Pattern?
+
+AI agents can run CLI tools directly, but every command and its output consumes the main agent's context window. A handful of `git` or `gh` invocations can burn through context fast, forcing earlier compaction and degrading the agent's ability to track your actual task. The main agent also has broad permissions — there's no guardrail preventing a careless `git push --force` or `wrangler deploy` to the wrong environment.
+
+The **operator pattern** (agent-as-tool) solves this by routing CLI execution through specialized subagents:
+
+1. **Hooks intercept** guarded commands in the main agent context and block them
+2. **The main agent delegates** to a purpose-built operator subagent instead
+3. **The operator executes** with its own dedicated context window and returns a concise result
+
+This gives you:
+
+- **Context isolation** — The primary benefit. Each operator runs in its own context window, dedicated to a specific tool and task. CLI output, retries, and troubleshooting stay contained in the subagent. The main agent's context stays focused on your actual work, letting it run longer before requiring compaction.
+- **Safety** — Operators have scoped permissions and built-in safeguards. The main agent can't accidentally force-push or deploy to production; each operator enforces its own guardrails.
+- **Consistency** — Every `gh pr create` goes through the same operator with the same conventions. No variation depending on how the main agent decides to construct a command.
+- **Composability** — Operators are modular plugins. Install only what you need, create custom operators for your own CLIs, and override mappings per-project.
+
+This isn't specific to the operators in this repo — it's a general pattern you can apply to any CLI tool your agent needs to use.
+
 ## Plugins
 
 | Plugin | CLI Guards | Operator | Description |

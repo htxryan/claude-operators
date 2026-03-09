@@ -1,7 +1,0 @@
-{
-  "name": "bun-operator",
-  "version": "1.0.0",
-  "description": "Bun runtime and package manager operator subagent for Claude Code. Guards bun and bunx CLI commands.",
-  "author": {"name": "htxryan", "url": "https://github.com/htxryan"},
-  "keywords": ["bun", "bunx", "package-manager", "runtime", "testing"]
-}

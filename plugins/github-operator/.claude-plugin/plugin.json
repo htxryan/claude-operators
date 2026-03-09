@@ -1,7 +1,0 @@
-{
-  "name": "github-operator",
-  "version": "1.0.0",
-  "description": "GitHub CLI operator subagent. Enforces use of the github-operator agent for all gh CLI operations including PRs, issues, releases, and repo management.",
-  "author": {"name": "htxryan", "url": "https://github.com/htxryan"},
-  "keywords": ["operators", "subagents", "github", "gh", "enforcement"]
-}

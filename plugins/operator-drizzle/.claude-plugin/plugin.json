@@ -1,0 +1,7 @@
+{
+  "name": "operator-drizzle",
+  "version": "1.0.0",
+  "description": "Drizzle ORM operator subagent for Claude Code. Guards the drizzle-kit CLI and provides expert migration and schema operations.",
+  "author": {"name": "htxryan", "url": "https://github.com/htxryan"},
+  "keywords": ["drizzle", "drizzle-kit", "orm", "migrations", "database"]
+}

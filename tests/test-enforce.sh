@@ -21,11 +21,11 @@ trap cleanup EXIT
 
 # Shorthand paths to each plugin's enforce-operator.sh
 OPERATOR_SYSTEM="$REPO_ROOT/plugins/operator-system/scripts/enforce-operator.sh"
-BUN_OPERATOR="$REPO_ROOT/plugins/bun-operator/scripts/enforce-operator.sh"
-GITHUB_OPERATOR="$REPO_ROOT/plugins/github-operator/scripts/enforce-operator.sh"
-WRANGLER_OPERATOR="$REPO_ROOT/plugins/cloudflare-wrangler-operator/scripts/enforce-operator.sh"
-DRIZZLE_OPERATOR="$REPO_ROOT/plugins/drizzle-operator/scripts/enforce-operator.sh"
-NEON_OPERATOR="$REPO_ROOT/plugins/neon-operator/scripts/enforce-operator.sh"
+BUN_OPERATOR="$REPO_ROOT/plugins/operator-bun/scripts/enforce-operator.sh"
+GITHUB_OPERATOR="$REPO_ROOT/plugins/operator-github/scripts/enforce-operator.sh"
+WRANGLER_OPERATOR="$REPO_ROOT/plugins/operator-cloudflare-wrangler/scripts/enforce-operator.sh"
+DRIZZLE_OPERATOR="$REPO_ROOT/plugins/operator-drizzle/scripts/enforce-operator.sh"
+NEON_OPERATOR="$REPO_ROOT/plugins/operator-neon/scripts/enforce-operator.sh"
 
 # ---------------------------------------------------------------------------
 # 1. Blocks guarded command (operator-system)
@@ -59,32 +59,32 @@ assert_exit_stdin 2 \
 # 5. Each plugin blocks its own CLIs
 # ---------------------------------------------------------------------------
 
-# bun-operator: bun
+# operator-bun: bun
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"bun install"}}' \
   "$BUN_OPERATOR"
 
-# bun-operator: bunx
+# operator-bun: bunx
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"bunx prettier ."}}' \
   "$BUN_OPERATOR"
 
-# github-operator: gh
+# operator-github: gh
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"gh pr list"}}' \
   "$GITHUB_OPERATOR"
 
-# cloudflare-wrangler-operator: wrangler
+# operator-cloudflare-wrangler: wrangler
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"wrangler deploy"}}' \
   "$WRANGLER_OPERATOR"
 
-# drizzle-operator: drizzle-kit
+# operator-drizzle: drizzle-kit
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"drizzle-kit generate"}}' \
   "$DRIZZLE_OPERATOR"
 
-# neon-operator: neonctl
+# operator-neon: neonctl
 assert_exit_stdin 2 \
   '{"session_id":"test","tool_input":{"command":"neonctl branches list"}}' \
   "$NEON_OPERATOR"

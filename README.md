@@ -1,4 +1,4 @@
-# Claude Operators
+# Agent Operators
 
 A collection of Claude Code plugins that enforce CLI tool usage through operator subagents. Each plugin guards specific CLI commands and redirects to specialized subagents for safe, consistent execution.
 
